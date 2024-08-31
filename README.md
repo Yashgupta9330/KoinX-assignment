@@ -37,16 +37,16 @@
 
 2. **Set up the Backend**
 
-     Start the backend server:
+     Install dependencies:
 
     ```bash
     npm i
     ```
 
-     Start the backend server:
+   Set up the Prisma schema and migrate the database:
 
     ```bash
-    npm i
+    npx prisma migrate dev
     ```
 
     Start the backend server:
