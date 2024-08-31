@@ -40,10 +40,10 @@
     npm install
     ```
 
-    Set up the Prisma schema and migrate the database:
+     Start the backend server:
 
     ```bash
-    npx prisma migrate dev
+    npm run dev
     ```
 
     Start the backend server:
@@ -60,16 +60,6 @@
     PORT=4000
     ETHERSCAN_API_KEY=YOUR_API_KEY
     ```
-## 📂 File Structure
-
-```plaintext
-KoinX-assignment/
-└── ├── src/
-    ├── prisma/
-    ├── node_modules/
-    ├── package.json
-    └── tsconfig.json
-plaintext```
 
 ## 📜 License
 
