@@ -21,15 +21,8 @@
 ## 📂 File Structure
 
 ```plaintext
-flashcard/
-├── frontend/
-│   ├── src/
-│   ├── public/
-│   ├── index.html
-│   ├── package.json
-│   └── vite.config.ts
-└── backend/
-    ├── src/
+KoinX-assignment/
+└── ├── src/
     ├── prisma/
     ├── node_modules/
     ├── package.json
@@ -47,8 +40,8 @@ plaintext```
 1. **Clone the repository**
 
     ```bash
-    git clone https://github.com/Yashgupta9330/flashcard.git
-    cd flashcard
+    git clone https://github.com/Yashgupta9330/KoinX-assignment.git
+    cd KoinX-assignment
     ```
 
 2. **Set up the Backend**
