@@ -18,17 +18,8 @@
 - Zod
 - Prisma
 
-## 📂 File Structure
 
-```plaintext
-KoinX-assignment/
-└── ├── src/
-    ├── prisma/
-    ├── node_modules/
-    ├── package.json
-    └── tsconfig.json
-plaintext```
- 
+
 ## 🚀 Getting Started
 
 ### Prerequisites
