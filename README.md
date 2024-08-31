@@ -60,6 +60,16 @@
     PORT=4000
     ETHERSCAN_API_KEY=YOUR_API_KEY
     ```
+## 📂 File Structure
+
+```plaintext
+KoinX-assignment/
+└── ├── src/
+    ├── prisma/
+    ├── node_modules/
+    ├── package.json
+    └── tsconfig.json
+plaintext```
 
 ## 📜 License
 
