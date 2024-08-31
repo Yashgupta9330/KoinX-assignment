@@ -37,13 +37,16 @@
 
 2. **Set up the Backend**
 
-    npm install
+     Start the backend server:
+
+    ```bash
+    npm i
     ```
 
      Start the backend server:
 
     ```bash
-    npm run dev
+    npm i
     ```
 
     Start the backend server:
