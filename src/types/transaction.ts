@@ -4,9 +4,9 @@ export interface Transaction {
     hash: string;
     from: string;
     to: string;
-    value: number;  
-    gasUsed: number;
-    gasPrice: number; 
+    value: string;  
+    gasUsed: string;
+    gasPrice: string; 
     blockNumber: number;
     userId: string; 
 }

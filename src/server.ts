@@ -12,10 +12,15 @@ app.use(cors());
 app.use(bodyParser.json());
 
 
-app.use('/api', routes);
+app.use('/api/v1', routes);
 
 
 initializeJobs();
+
+app.get('/',(req, res) => {
+  res.send('KoinX assignment Server is running fine'); 
+});
+
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);

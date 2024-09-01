@@ -1,11 +1,9 @@
-import axios from 'axios';
 import prisma from '../utils/prismaClient';
-import { EtherscanResponse, EtherscanTransaction, User } from '../types/transaction';
+import { EtherscanTransaction, User } from '../types/transaction';
+import { fetchTransactions } from '../helper/transaction';
 
 
-const ETHERSCAN_API_URL = 'https://api.etherscan.io/api';
-
-export const fetchTransactionsAndUpdateUser = async (address: string) => {
+export const fetchTransactionsAndUpdateUser = async (address: string): Promise<User> => {
     let user = await prisma.user.findUnique({
         where: { address },
         include: { transactions: true }
@@ -28,36 +26,14 @@ export const fetchTransactionsAndUpdateUser = async (address: string) => {
     const startBlock = user.latestBlockNumber;
 
     try {
-        const apiKey = process.env.ETHERSCAN_API_KEY;
-        if (!apiKey) {
-            throw new Error('ETHERSCAN_API_KEY is not defined');
-        }
-
-        const response = await axios.get<EtherscanResponse>(ETHERSCAN_API_URL, {
-            params: {
-                module: 'account',
-                action: 'txlist',
-                address,
-                startblock: startBlock,
-                endblock: 99999999,
-                sort: 'asc',
-                apikey: apiKey,
-            }
-        });
-
-        const { status, message, result } = response.data;
-
-        if (status !== '1') {
-            console.error('API Error:', message);
-            throw new Error(message || 'Unknown API error');
-        }
+        const result = await fetchTransactions(address, startBlock);
 
         if (!Array.isArray(result) || result.length === 0) {
             console.log('No new transactions found for address:', address);
             return user;
         }
 
-        const transactionHashes = result.map((tx: EtherscanTransaction) => tx.hash);
+    
         const existingTransactions = user.transactions; 
         const existingHashes = new Set(existingTransactions.map(tx => tx.hash));
         const newTransactions = result.filter((tx: EtherscanTransaction) => !existingHashes.has(tx.hash));
@@ -72,11 +48,11 @@ export const fetchTransactionsAndUpdateUser = async (address: string) => {
                     hash: tx.hash,
                     from: tx.from,
                     to: tx.to,
-                    value: parseFloat(tx.value),
-                    gasUsed: parseInt(tx.gasUsed, 10),
-                    gasPrice: parseFloat(tx.gasPrice),
+                    value: tx.value,
+                    gasUsed: tx.gasUsed,
+                    gasPrice: tx.gasPrice,
                     blockNumber: parseInt(tx.blockNumber, 10),
-                    userId: user!.id, 
+                    userId: user!.id,
                 }))
             });
 

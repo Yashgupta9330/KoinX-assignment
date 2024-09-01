@@ -33,7 +33,7 @@ export const getUserExpensesAndPrice = async (address: string): Promise<UserExpe
   
 
     const totalExpenses = user.transactions.reduce((sum: number, tx: Transaction) => {
-        const expense = (tx.gasUsed * tx.gasPrice) / 1e18;
+        const expense = (parseInt(tx.gasUsed) * parseInt(tx.gasPrice)) / 1e18;
         return sum + expense;
     }, 0);
   

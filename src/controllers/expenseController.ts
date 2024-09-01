@@ -11,7 +11,7 @@ export const getUserExpensesAndPriceController = async (req: Request, res: Respo
     }
 
     const result = await getUserExpensesAndPrice(address);
-    return res.status(500).json(result);
+    return res.status(200).json(result);
 
   } catch (error:any) {
     return res.status(500).json({ error: error.message });
