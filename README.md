@@ -46,7 +46,7 @@
    Set up the Prisma schema and migrate the database:
 
     ```bash
-    npx prisma migrate dev
+    npx prisma generate
     ```
 
     Start the backend server:
